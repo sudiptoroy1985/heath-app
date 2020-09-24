@@ -7,19 +7,16 @@ import { Router } from '@angular/router';
   selector: 'login',
   styleUrls: ['./login.component.scss'],
   template: `
-    <div>
       <auth-form (submitted)="loginUser($event)">
         <h1>login</h1>
         <a routerLink="/auth/register">Not registered?</a>
         <button type="submit">Login</button>
         <div class="error" *ngIf="error">{{ error }}</div>
         <span>
-          <img src="./img/google-auth.jpeg" alt="Sign-in with Google" (click)="alternateLogin('Google')" width="20" height="20" >
-          <img src="./img/github-auth.jpeg" alt="Sign-in with Github" (click)="alternateLogin('Github')" width="20" height="20" >
+          <div><img src="./img/google-auth.jpeg" alt="Sign-in with Google" (click)="alternateLogin('Google')" width="20" height="20" ></div>
+          <div><img src="./img/github-auth.jpeg" alt="Sign-in with Github" (click)="alternateLogin('Github')" width="20" height="20" ></div>
         </span>
-
       </auth-form>
-    </div>
   `
 })
 export class LoginComponent {
@@ -41,17 +38,26 @@ export class LoginComponent {
 async alternateLogin(provider: any){
     switch(provider){
       case 'Google': {
-        try{
-          const response = await this.authService.GoogleAuth();
-          this.router.navigate(['/']);
-        } catch(err){
-          this.error = err;
-          console.error("ERROR", err);
-        } finally{
-          console.log("ended");
-        }
+        await this.handleAuth(this.authService.GoogleAuth());
+      }
+      case 'Github': {
+        await this.handleAuth(this.authService.GitHubAuth());
       }
     }
   }
 
+   async handleAuth(provider: Promise<firebase.auth.UserCredential>) {
+    try{
+      await provider;
+      this.router.navigate(['/']);
+    } catch(err){
+      this.error = err;
+      console.error("ERROR", err);
+    } finally{
+      console.log("ended");
+    }
+  }
+
 }
+
+

@@ -12,18 +12,25 @@
     position: absolute;
     top: 16px;
     right: 15px;
+    padding: 10px;
     cursor: pointer;
   }
   span {
     background: url(/img/logout.svg) no-repeat;
     background-size: contain;
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 28px;
     display: block;
     opacity: 0.4;
     &:hover {
       opacity: 0.9;
     }
+  }
+  label {
+    color: #8022b0;
+    font-size: 0.9em;
+    font-weight: 500;
+    padding: 3px 0 0 0;
   }
 }
 

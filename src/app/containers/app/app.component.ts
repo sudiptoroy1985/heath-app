@@ -23,7 +23,7 @@ export class AppComponent implements OnInit, OnDestroy{
 
   subscription: Subscription;
 
-  constructor(private store: Store, private authService: AuthService, private router: Router) {}
+  constructor(private store: Store, private authService: AuthService, private router: Router){}
 
   ngOnInit(): void {
     this.subscription = this.authService.auth$.subscribe();

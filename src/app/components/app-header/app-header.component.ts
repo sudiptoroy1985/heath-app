@@ -10,7 +10,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
       <div class="wrapper">
        <img src="/img/logo.svg">
        <div class="app-header__user-info" *ngIf="user?.authenticated">
-        <label>Hi! {{ user.name |  uppercase }}  | </label>
+        <label>{{ user.name }} | </label>
         <span (click)="logoutUser()"></span>
        </div>
       </div>

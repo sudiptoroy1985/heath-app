@@ -17,7 +17,9 @@ import { AppComponent } from './containers/app/app.component';
 // components
 
 // routes
-export const ROUTES: Routes = [];
+export const ROUTES: Routes = [
+  { path: '', pathMatch: 'full',  redirectTo: 'schedules'}
+];
 
 @NgModule({
   imports: [
