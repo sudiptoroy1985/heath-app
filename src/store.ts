@@ -1,3 +1,5 @@
+import { User } from './interfaces/user';
+
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -5,10 +7,13 @@ import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/distinctUntilChanged';
 
 export interface State {
+  user: User,
   [key: string]: any
 }
 
-const state: State = {};
+const state: State = {
+  user: undefined
+};
 
 export class Store {
 
